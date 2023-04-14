@@ -1,0 +1,82 @@
+<div class="w-screen  flex justify-center pb-10">
+    <div class="w-[80%] mt-10">
+        <div class="flex justify-center text-3xl p-5">User Details</div>
+        <div>
+
+            <form (ngSubmit)="submit()">
+                <div class="mb-6">
+                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
+                        Full Name</label>
+                    <input [(ngModel)]="UserData.FullName" name="FullName" type="text" id="name"
+                        class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                        placeholder="" required>
+
+                </div>
+                <div class="mb-6">
+                    <label for="phoneNumber" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
+                        Phone Number</label>
+                    <input [(ngModel)]="UserData.PhoneNumber" name="PhoneNumber" type="number" id="phoneNumber"
+                        class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                        required>
+
+                </div>
+                <div class="mb-6">
+                    <label for="seats" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">How many
+                        seats you want?
+                        (1-7)</label>
+                    <input type="number" id="seats" [(ngModel)]="UserData.SeatRequired" name="SeatRequired"
+                        class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                        (keyup)="check()" required>
+                    <p *ngIf="ShowErrorMessage" class="mt-2 text-sm text-red-600 dark:text-red-500"><span
+                            class="font-medium">Invalid Seat Number!</span> You can select upto 7 seats</p>
+
+                </div>
+                <button
+                    class="w-[10%] text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    Search</button>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<hr>
+
+<div *ngIf="ResultData.show==true" class="w-screen h-[40%] flex justify-center items-center ">
+
+    <div href="#"
+        class="block w-[50%] p-6 bg-white border border-gray-200 rounded-lg shadow  dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+        <h5  *ngIf="ResultData.status==true" class="mb-2 text-2xl font-bold tracking-tight text-green-500 ">
+            Booked Successfully
+        </h5>
+        <h5  *ngIf="ResultData.status==false" class="mb-2 text-2xl font-bold tracking-tight text-red-500">
+            Booking Failed!!!
+        </h5>
+        <div class="mb-6">
+            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
+                Full Name</label>
+            <input type="text" id="name"
+                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                placeholder=""[value]="UserData.FullName"   required>
+        </div>
+        <div class="mb-6">
+            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
+                Phone Number</label>
+            <input type="text" id="name"
+                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                placeholder="" [value]="UserData.PhoneNumber" required>
+        </div>
+        <div class="mb-6 ">
+            <label  *ngIf="ResultData.status==true" for="name" class="mr-5 block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                {{ResultData.NoOfSeat}} seat reserved successfully in row {{ResultData.row}}, seat {{ResultData.from}} to {{ResultData.to}}  </label>
+
+                <label *ngIf="ResultData.status==false" for="name" class="mr-5 block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    Seat Not Available </label>
+            
+        </div>
+    </div>
+
+</div>
+
+<!-- --------------------------------------- -->
+
